@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Harry Potter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz de Harry Potter</h1>
+        <form method="post">
+    {% for i in range(preguntas|length) %}
+        <div class="pregunta">
+            <p>{{ preguntas[i].pregunta }}</p>
+            <div class="respuestas">
+                {% for idx in range(preguntas[i].respuestas|length) %}
+                    <label>
+                        <input type="radio" name="respuesta{{ i }}" value="{{ idx }}" required>
+                        {{ preguntas[i].respuestas[idx] }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+    <button type="submit">Enviar Respuestas</button>
+</form>
+    </div>
+</body>
+</html>
